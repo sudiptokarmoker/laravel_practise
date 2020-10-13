@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Backened\Dashboard;
 use App\Http\Controllers\Dashboard\IndexController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +14,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Auth::routes();
 
@@ -32,3 +33,8 @@ Route::view('/dashboard/index', [IndexController::class, 'index'])->name('dashbo
 Route::view('/dashboard/show', [IndexController::class, 'show'])->name('dashboard.show')->middleware('auth');
 Route::view('/dashboard/create', [IndexController::class, 'create'])->name('dashboard.create')->middleware('auth');
 */
+
+
+Route::group(['prefix' => 'admin'], function(){
+    Route::get('/', [Dashboard::class, 'index'])->name('admin.dashboard');
+});

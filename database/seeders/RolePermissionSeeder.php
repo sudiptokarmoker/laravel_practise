@@ -17,17 +17,26 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         // create roles
-        $roleAdmin = Role::create(['name' => 'admin']);
+        //$roleAdmin = Role::create(['name' => 'admin']);
         $roleSuperAdmin = Role::create(['name' => 'superadmin']);
-        $roleSuperEditor = Role::create(['name' => 'editor']);
-        $roleSuperUser = Role::create(['name' => 'user']);
+        //$roleSuperEditor = Role::create(['name' => 'editor']);
+        //$roleSuperUser = Role::create(['name' => 'user']);
 
-        $permission = [
-            'dashboard.view',
-            'dashboard.show',
-            'dashboard.create'
+        $permissions = [
+            'dashboard.default',
+            'dashboard.create',
+            // 
+            'roles.create',
+            'roles.edit',
+            'roles.delete',
+            // 
+            'permission.create',
+            'permission.edit',
+            'permission.delete',
+            // blog related
+            'blog.index',
+            'blog.delete'
         ];
-
         /*
         // permission
         $permission = [
@@ -52,12 +61,12 @@ class RolePermissionSeeder extends Seeder
         ];
 */
 
-        for($i = 0; $i < count($permission); $i++){
-            $_permission = Permission::create([
-                'name' => $permission[$i]
+        for($i = 0; $i < count($permissions); $i++){
+            $permission = Permission::create([
+                'name' => $permissions[$i]
             ]);
             $roleSuperAdmin->givePermissionTo($permission);
-            $_permission->assignRole($roleSuperAdmin);            
+            $permission->assignRole($roleSuperAdmin);            
         }
     }
 }

@@ -23,6 +23,7 @@
     <script src="{{ asset('backened/assets/js/pie-chart.js') }}"></script>
     <!-- others plugins -->
 
+    <!-- @datatable_footer script here --> 
     @yield('footer_datatable_script')
 
     <script src="{{ asset('backened/assets/js/plugins.js') }}"></script>

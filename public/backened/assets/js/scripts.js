@@ -96,6 +96,7 @@
     /*================================
     datatable active
     ==================================*/
+    /*
     if ($('#dataTable').length) {
         $('#dataTable').DataTable({
             responsive: true
@@ -111,8 +112,7 @@
             responsive: true
         });
     }
-
-
+    */
     /*================================
     Slicknav mobile menu
     ==================================*/

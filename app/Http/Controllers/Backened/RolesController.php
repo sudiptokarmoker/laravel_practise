@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\User;
 
 class RolesController extends Controller
 {
@@ -32,7 +33,10 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = DB::table('permissions')->get();
+        $permissionGroup = User::getPermissionsGroups();
+        //dd($permissionGroup);
+        return view('backened.pages.roles.create', compact('permissions', 'permissionGroup'));
     }
 
     /**
@@ -43,7 +47,22 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required|max:100|unique:roles'
+            ],
+            [
+                'name.required' => 'Please give a role name'
+            ]
+        );
+        $role =  Role::create(['name' => $request->name]);
+        $permissions = $request->input('permissions');
+
+        if (!empty($permissions)) {
+            $role->syncPermissions($permissions);
+        }
+
+        return back();
     }
 
     /**

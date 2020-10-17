@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 
 <head>
-    @include('backened.layout.partial.head');
+    @include('backened.layout.partial.head')
 </head>
 
 <body>
@@ -26,7 +26,7 @@
         <!-- main content area end -->
         <!-- footer area start-->
         <footer>
-            @include('backened.layout.partial.footer');
+            @include('backened.layout.partial.footer')
         </footer>
         <!-- footer area end-->
     </div>
@@ -37,7 +37,7 @@
     </div>
     <!-- offset area end -->
     <!-- jquery latest version -->
-    @include('backened.layout.partial.footer_script');
+    @include('backened.layout.partial.footer_script')
 </body>
 
 </html>

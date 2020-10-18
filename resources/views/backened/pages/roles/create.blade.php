@@ -228,7 +228,7 @@
                                     <div class="col-4">
                                         <div class="form-check">
                                             <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" class="custom-control-input" name="permissions[]" id="checkPermissionGroup-{{ $i }}" value="{{ $group->name }}" onclick="checkPermissionByGroupName('role-{{ $i }}-management-checkbox', this)" />
+                                                <input type="checkbox" class="custom-control-input" id="checkPermissionGroup-{{ $i }}" value="{{ $group->name }}" onclick="checkPermissionByGroupName('role-{{ $i }}-management-checkbox', this)" />
                                                 <label class="custom-control-label" for="checkPermissionGroup-{{ $i }}">{{ $group->name }}</label>
                                             </div>
                                         </div>

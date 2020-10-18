@@ -5,6 +5,7 @@ use App\Http\Controllers\Backened\RolesController;
 use App\Http\Controllers\Dashboard\IndexController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,3 +44,5 @@ Route::group(['prefix' => 'admin'], function(){
     
     Route::resource('roles', RolesController::class, ['name' => 'admin.roles']);
 });
+
+Route::get('/test', [TestController::class, 'index']);

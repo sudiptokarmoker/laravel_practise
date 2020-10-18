@@ -206,10 +206,11 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Edit Roles</h4>
+                    <h4 class="header-title">Edit Roles : {{ $role->name }}</h4>
                     <div>
                         @include('backened.layout.partial.message')
-                        <form action="{{ route('roles.update', $role->id) }}">
+                        <form action="{{ route('roles.update', $role->id) }}" method="POST">
+                            @method('put')
                             @csrf
                             <div class="form-group">
                                 <label for="txtRoleName">Enter a role name</label>
@@ -226,19 +227,19 @@
                                 @php $i = 1; @endphp
                                 @foreach($permissionGroup as $group)
                                 <div class="row">
+                                    @php
+                                    $permissions = App\Models\User::getPermissionsByGroupName($group->name);
+                                    $j = 1;
+                                    @endphp
                                     <div class="col-4">
                                         <div class="form-check">
                                             <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" class="custom-control-input" name="permissions[]" id="checkPermissionGroup-{{ $i }}" value="{{ $group->name }}" onclick="checkPermissionByGroupName('role-{{ $i }}-management-checkbox', this)" />
+                                                <input type="checkbox" class="custom-control-input" id="checkPermissionGroup-{{ $i }}" value="{{ $group->name }}" onclick="checkPermissionByGroupName('role-{{ $i }}-management-checkbox', this)" {{ App\Models\User::roleHasPermissions($role, $permissions) ? 'checked' : '' }} />
                                                 <label class="custom-control-label" for="checkPermissionGroup-{{ $i }}">{{ $group->name }}</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-4 role-{{ $i }}-management-checkbox">
-                                        @php
-                                        $permissions = App\Models\User::getPermissionsByGroupName($group->name);
-                                        $j = 1;
-                                        @endphp
                                         @foreach($permissions as $permission)
                                         <div class="form-check">
                                             <div class="custom-control custom-checkbox mr-sm-2">

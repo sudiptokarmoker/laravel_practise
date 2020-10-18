@@ -56,7 +56,9 @@ class RolesController extends Controller
                 'name.required' => 'Please give a role name'
             ]
         );
+
         $role =  Role::create(['name' => $request->name]);
+
         $permissions = $request->input('permissions');
 
         if (!empty($permissions)) {
@@ -89,6 +91,8 @@ class RolesController extends Controller
         $permissions = Permission::all();
         $permissionGroup = User::getPermissionsGroups();
 
+        //dd($role, $permissions);
+
         return view('backened.pages.roles.edit', compact('role', 'permissions', 'permissionGroup'));
     }
 
@@ -101,8 +105,22 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //die("EDJLDJLFkj");
-        //dd($request);
+        $request->validate(
+            [
+                'name' => 'required|max:100'
+            ],
+            [
+                'name.required' => 'Please give a role name'
+            ]
+        );
+        $role =  Role::findById($id);
+        $permissions = $request->input('permissions');
+
+        if (!empty($permissions)) {
+            $role->syncPermissions($permissions);
+        }
+
+        return back();
     }
 
     /**0

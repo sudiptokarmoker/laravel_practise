@@ -81,7 +81,9 @@ class User extends Authenticatable
         foreach($permissions as $permission){
             if( !$role->hasPermissionTo($permission->name) ){
                 $hasPermission = false;
+                return $hasPermission;
             }
         }
+        return $hasPermission;
     }
 }

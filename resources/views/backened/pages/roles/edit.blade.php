@@ -220,7 +220,7 @@
                             <div class="form-group permission-checkbox-raw-wrapper">
                                 <label for="name">Permissons</label>
                                 <div class="form-check">
-                                    <input type="checkbox" name="" class="form-check-input" id="checkPermissionAll" value="" />
+                                    <input type="checkbox" name="" class="form-check-input" id="checkPermissionAll" value="" {{ App\Models\User::roleHasPermissions($role, $permissions) ? 'checked' : '' }}/>
                                     <label class="form-check-label" for="checkPermissionAll">All</label>
                                 </div>
                                 <hr>

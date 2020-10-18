@@ -118,6 +118,8 @@ class RolesController extends Controller
 
         if (!empty($permissions)) {
             $role->syncPermissions($permissions);
+        } else {
+            $role->syncPermissions([]);
         }
 
         return back();

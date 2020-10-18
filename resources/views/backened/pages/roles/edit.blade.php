@@ -220,7 +220,7 @@
                             <div class="form-group permission-checkbox-raw-wrapper">
                                 <label for="name">Permissons</label>
                                 <div class="form-check">
-                                    <input type="checkbox" name="" class="form-check-input" id="checkPermissionAll" value="" {{ App\Models\User::roleHasPermissions($role, $permissions) ? 'checked' : '' }}/>
+                                    <input type="checkbox" name="" class="form-check-input" id="checkPermissionAll" value="" {{ App\Models\User::roleHasPermissions($role, $permissions) ? 'checked' : '' }} />
                                     <label class="form-check-label" for="checkPermissionAll">All</label>
                                 </div>
                                 <hr>
@@ -234,7 +234,7 @@
                                     <div class="col-4">
                                         <div class="form-check">
                                             <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" class="custom-control-input" id="checkPermissionGroup-{{ $i }}" value="{{ $group->name }}" onclick="checkPermissionByGroupName('role-{{ $i }}-management-checkbox', this)" {{ App\Models\User::roleHasPermissions($role, $permissions) ? 'checked' : '' }} />
+                                                <input type="checkbox" class="custom-control-input pr-group-{{ $i }}" id="checkPermissionGroup-{{ $i }}" value="{{ $group->name }}" onclick="checkPermissionByGroupName('role-{{ $i }}-management-checkbox', this)" {{ App\Models\User::roleHasPermissions($role, $permissions) ? 'checked' : '' }} />
                                                 <label class="custom-control-label" for="checkPermissionGroup-{{ $i }}">{{ $group->name }}</label>
                                             </div>
                                         </div>
@@ -243,7 +243,7 @@
                                         @foreach($permissions as $permission)
                                         <div class="form-check">
                                             <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" class="custom-control-input" data-value="{{ $role->hasPermissionTo($permission->name) }}" name="permissions[]" {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }} id="checkPermission-{{ $permission->id }}" value="{{ $permission->name }}" />
+                                                <input type="checkbox" class="custom-control-input permission-child-{{ $permission->id }}" data-value="{{ $role->hasPermissionTo($permission->name) }}" name="permissions[]" {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }} id="checkPermission-{{ $permission->id }}" value="{{ $permission->name }}" onclick="permissionGroupCheckUncheck('permission-child-{{ $permission->id }}', 'pr-group-{{ $i }}', 'role-{{ $i }}-management-checkbox')" />
                                                 <label class="custom-control-label" for="checkPermission-{{ $permission->id }}">{{ $permission->name }}</label>
                                             </div>
                                         </div>

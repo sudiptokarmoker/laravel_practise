@@ -178,10 +178,11 @@
     <div class="row align-items-center">
         <div class="col-sm-6">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Roles</h4>
+                <h4 class="page-title pull-left">Edit Roles</h4>
                 <ul class="breadcrumbs pull-left">
-                    <li><a href="index.html">Home</a></li>
-                    <li><span>Dashboard</span></li>
+                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('roles.index') }}">All Roles</a></li>
+                    <li><span>Edit Role</span></li>
                 </ul>
             </div>
         </div>
@@ -205,14 +206,14 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Create Roles</h4>
+                    <h4 class="header-title">Edit Roles</h4>
                     <div>
                         @include('backened.layout.partial.message')
-                        <form action="{{ route('roles.store') }}" method="POST">
+                        <form action="{{ route('roles.update', $role->id) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="txtRoleName">Enter a role name</label>
-                                <input type="text" name="name" class="form-control" id="txtRoleName" placeholder="Enter a role name">
+                                <input type="text" name="name" class="form-control" id="txtRoleName" value="{{ $role->name }}" placeholder="Enter a role name">
                             </div>
 
                             <div class="form-group permission-checkbox-raw-wrapper">
@@ -241,7 +242,7 @@
                                         @foreach($permissions as $permission)
                                         <div class="form-check">
                                             <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" class="custom-control-input" name="permissions[]" id="checkPermission-{{ $permission->id }}" value="{{ $permission->name }}" />
+                                                <input type="checkbox" class="custom-control-input" data-value="{{ $role->hasPermissionTo($permission->name) }}" name="permissions[]" {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }} id="checkPermission-{{ $permission->id }}" value="{{ $permission->name }}" />
                                                 <label class="custom-control-label" for="checkPermission-{{ $permission->id }}">{{ $permission->name }}</label>
                                             </div>
                                         </div>

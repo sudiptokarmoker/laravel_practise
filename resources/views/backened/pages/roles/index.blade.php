@@ -217,7 +217,10 @@
                                                 <tr>
                                                     <td>{{ $loop->index+1 }}</td>
                                                     <td>{{ $role->name }}</td>
-                                                    <td></td>
+                                                    <td>
+                                                        <a class="btn btn-info text-white" href={{ route('roles.edit', $role->id) }}>Edit</a>
+                                                        <a class="btn btn-danger text-white" onclick="">Delete</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

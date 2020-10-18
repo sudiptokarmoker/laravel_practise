@@ -75,4 +75,13 @@ class User extends Authenticatable
             ->select('id', 'name', 'group_name')
             ->get();
     }
+
+    public static function roleHasPermissions($role, $permissions){
+        $hasPermission = true;
+        foreach($permissions as $permission){
+            if( !$role->hasPermissionTo($permission->name) ){
+                $hasPermission = false;
+            }
+        }
+    }
 }

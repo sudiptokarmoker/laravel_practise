@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use Spatie\Permission\Contracts\Permission as ContractsPermission;
 
 class RolesController extends Controller
 {
@@ -84,7 +85,11 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findById($id);
+        $permissions = Permission::all();
+        $permissionGroup = User::getPermissionsGroups();
+
+        return view('backened.pages.roles.edit', compact('role', 'permissions', 'permissionGroup'));
     }
 
     /**
@@ -96,10 +101,11 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //die("EDJLDJLFkj");
+        //dd($request);
     }
 
-    /**
+    /**0
      * Remove the specified resource from storage.
      *
      * @param  int  $id

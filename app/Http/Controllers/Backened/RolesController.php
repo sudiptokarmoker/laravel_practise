@@ -20,9 +20,10 @@ class RolesController extends Controller
      */
     public function index()
     {
-        //die("Caled");
-        //$roles = Role::all();
-        $roles = DB::table('roles')->get();
+        //die("Called");
+        $roles = Role::all();
+        //$roles = DB::table('roles')->get();
+        //$permissions = DB::table('permissions')->get();
         //dd($roles[0]->name);
         return view('backened.pages.roles.index', compact('roles'));
     }
@@ -105,15 +106,24 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->input('name'));
+
         $request->validate(
             [
-                'name' => 'required|max:100'
+                'name' => 'required|max:100|unique:roles,name,'.$id
             ],
             [
                 'name.required' => 'Please give a role name'
             ]
         );
         $role =  Role::findById($id);
+
+        $role->name = $request->input('name');
+        $role->update();
+
+        //dd($role);
+        //die();
+
         $permissions = $request->input('permissions');
 
         if (!empty($permissions)) {
@@ -133,6 +143,15 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //dd("FOUND");
+        //die();
+
+        $role = Role::findById($id);
+
+        if(!is_null($role)){
+            $role->delete();
+        }
+
+        return back();
     }
 }

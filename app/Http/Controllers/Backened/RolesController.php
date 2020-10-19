@@ -148,10 +148,12 @@ class RolesController extends Controller
 
         $role = Role::findById($id);
 
+        dd($role);
+        
         if(!is_null($role)){
             $role->delete();
         }
 
-        return back();
+        //return back();
     }
 }

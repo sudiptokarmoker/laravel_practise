@@ -43,7 +43,7 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-info text-white" href={{ route('roles.edit', $role->id) }}>Edit</a>
-                                        <a class="btn btn-danger text-white" href="{{ route('roles.destroy', $role->id) }}">Delete</a>
+                                        <a class="btn btn-danger text-white" href="{{ route('roles.destroy', $role->id) }}" onclick="event.preventDefault();">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach

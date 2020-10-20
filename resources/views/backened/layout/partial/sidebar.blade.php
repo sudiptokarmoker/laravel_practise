@@ -15,6 +15,14 @@
                             <li <?php if(Route::currentRouteName() == 'roles.create'): ?> class="active" <?php endif; ?>><a href="{{ route('roles.create') }}">Role Create</a></li>
                         </ul>
                     </li>
+                    {{-- users list sidebar --}}
+                    <li>
+                        <a href="{{ route('users.index') }}" aria-expanded="true"><i class="ti-dashboard"></i><span>Users</span></a>
+                        <ul class="collapse">
+                            <li <?php if(Route::currentRouteName() == 'users.index'): ?> class="active" <?php endif; ?>><a href="{{ route('users.index') }}">User List</a></li>
+                            <li <?php if(Route::currentRouteName() == 'users.create'): ?> class="active" <?php endif; ?>><a href="{{ route('users.create') }}">Create User</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>

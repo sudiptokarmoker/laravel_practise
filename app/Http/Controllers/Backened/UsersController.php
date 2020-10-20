@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Backened;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +11,7 @@ use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use Spatie\Permission\Contracts\Permission as ContractsPermission;
 
-class RolesController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +20,12 @@ class RolesController extends Controller
      */
     public function index()
     {
+        $users = User::all();
+
         $roles = Role::all();
-        //$roles = DB::table('roles')->get();
+
         //$permissions = DB::table('permissions')->get();
-        return view('backened.pages.roles.index', compact('roles'));
+        return view('backened.pages.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -32,9 +35,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $permissions = DB::table('permissions')->get();
-        $permissionGroup = User::getPermissionsGroups();
-        return view('backened.pages.roles.create', compact('permissions', 'permissionGroup'));
+        $roles = Role::all();
+        return view('backened.pages.users.create', compact('roles'));
     }
 
     /**
@@ -55,7 +57,6 @@ class RolesController extends Controller
         );
 
         $role =  Role::create(['name' => $request->name]);
-
         $permissions = $request->input('permissions');
 
         if (!empty($permissions)) {
@@ -84,13 +85,11 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::findById($id);
-        $permissions = Permission::all();
-        $permissionGroup = User::getPermissionsGroups();
+        $user = User::findById($id);
+        $role = Role::all($id);
 
-        return view('backened.pages.roles.edit', compact('role', 'permissions', 'permissionGroup'));
+        return view('backened.pages.users.edit', compact('users', 'role'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -108,8 +107,8 @@ class RolesController extends Controller
                 'name.required' => 'Please give a role name'
             ]
         );
-
         $role =  Role::findById($id);
+
         $role->name = $request->input('name');
         $role->update();
 
@@ -132,13 +131,13 @@ class RolesController extends Controller
      */
     public function destroy($request, $id)
     {
-        $role = Role::findById($id);
-
-        if (!is_null($role)) {
-            $role->delete();
+        $user = User::findById($id);
+        if (!is_null($user)) {
+            $user->delete();
         }
-        $request->session()->flash('success', 'role has been deleted');
-        // session->flash('success', 'role has been deleted');
+        
+        $request->session()->flash('success', 'User has been deleted');
+        //session->flash('success', 'User has been deleted');
         return back();
     }
 }

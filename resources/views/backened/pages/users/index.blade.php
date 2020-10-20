@@ -1,13 +1,36 @@
 @extends('backened.layout.master')
 
-@section('title', 'Roles Pages')
+@section('title', 'Users Pages')
 
 @section('admin-content')
 <!-- header area start -->
-@include('backened.pages.roles.partial.header')
+@include('backened.pages.users.partial.header')
 <!-- header area end -->
 <!-- page title area start -->
-@include('backened.pages.roles.partial.page_title')
+<div class="page-title-area">
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="breadcrumbs-area clearfix">
+                <h4 class="page-title pull-left">Users</h4>
+                <ul class="breadcrumbs pull-left">
+                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li><span>All users</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6 clearfix">
+            <div class="user-profile pull-right">
+                <img class="avatar user-thumb" src="{{ asset('backened/assets/images/author/avatar.png') }}" alt="avatar">
+                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Message</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- page title area end -->
 <div class="main-content-inner">
     <div class="row">
@@ -15,39 +38,40 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title float-left">Roles List</h4>
+                    <h4 class="header-title float-left">Users List</h4>
                     <p class="float-right">
-                        <a class="btn btn-primary text-white" href="{{ route('roles.create') }}">Create</a>
+                        <a class="btn btn-primary text-white" href="{{ route('users.create') }}">Create</a>
                     </p>
                     <div class="data-tables">
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
                                     <th width="5%">SL</th>
-                                    <th width="10%">Name</th>
-                                    <th width="50%">Permission</th>
-                                    <th width="35%">Action</th>
+                                    <th width="20%">Name</th>
+                                    <th width="20%">Email</th>
+                                    <th width="35%">Roles</th>
+                                    <th width="20%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($roles as $role)
+                                @foreach($users as $user)
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
-                                    <td>{{ $role->name }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
                                     <td>
-                                        @foreach ( $role->permissions as $perm )
-                                            <span class="badge badge-info mr-1">
-                                                {{ $perm->name }}
-                                            </span>
-                                        @endforeach
+                                        {{-- @foreach ( $role->permissions as $perm )
+                                        <span class="badge badge-info mr-1">
+                                            {{ $perm->name }}
+                                        </span>
+                                        @endforeach --}}
                                     </td>
                                     <td>
-                                        <a class="btn btn-info text-white" href={{ route('roles.edit', $role->id) }}>Edit</a>
-                                        <a class="btn btn-danger text-white" href="{{ route('roles.destroy', $role->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();">Delete</a>
-
-                                        <form id="delete-form-{{ $role->id }}" action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display: none;">
+                                        <a class="btn btn-info text-white" href={{ route('users.edit', $user->id) }}>Edit</a>
+                                        <a class="btn btn-danger text-white" href="{{ route('users.destroy', $user->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">Delete</a>
+                                        <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: none;">
                                             @method('DELETE')
-                                            @csrf                                        
+                                            @csrf
                                         </form>
                                     </td>
                                 </tr>
@@ -89,8 +113,9 @@
         });
     }
 
-    function trigger_delete_roles(){
+    function trigger_delete_roles() {
         alert("fond");
     }
+
 </script>
 @endsection

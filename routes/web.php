@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Backened\Dashboard;
-use App\Http\Controllers\Backened\RolesController;
-use App\Http\Controllers\Dashboard\IndexController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\TestController;
+
+use App\Http\Controllers\Backened\RolesController;
+use App\Http\Controllers\Backened\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,12 +37,15 @@ Route::view('/dashboard/create', [IndexController::class, 'create'])->name('dash
 */
 
 Route::group(['prefix' => 'admin'], function(){
+    
     Route::get('/', [Dashboard::class, 'index'])->name('admin.dashboard');
+
     //Route::get('roles', [RolesController::class, 'index']);
     //Route::get('/roles', [RolesController::class, 'index']);
     //Route::resource('roles', RolesController::class);
     
     Route::resource('roles', RolesController::class, ['name' => 'admin.roles']);
+    Route::resource('users', UsersController::class, ['name' => 'admin.users']);
 });
 
 Route::get('/test', [TestController::class, 'index']);

@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 */
 
-Auth::routes();
+//Auth::routes();
 
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -37,15 +37,16 @@ Route::view('/dashboard/create', [IndexController::class, 'create'])->name('dash
 */
 
 Route::group(['prefix' => 'admin'], function(){
-    
     Route::get('/', [Dashboard::class, 'index'])->name('admin.dashboard');
-
     //Route::get('roles', [RolesController::class, 'index']);
     //Route::get('/roles', [RolesController::class, 'index']);
     //Route::resource('roles', RolesController::class);
-    
     Route::resource('roles', RolesController::class, ['name' => 'admin.roles']);
     Route::resource('users', UsersController::class, ['name' => 'admin.users']);
+
+    // Login route
+    Route::get('/login', );
+
 });
 
 Route::get('/test', [TestController::class, 'index']);

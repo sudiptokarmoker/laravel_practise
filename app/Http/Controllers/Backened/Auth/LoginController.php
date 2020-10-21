@@ -13,7 +13,12 @@ class LoginController extends Controller
 
     protected $redirectTo = RouteServiceProvider::ADMIN_DASHBOARD;
 
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     public function showLoginForm(Request $request){
-        // show login form
+        return view('backened.auth.login');
     }
 }

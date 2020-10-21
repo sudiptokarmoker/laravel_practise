@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Contracts\Permission as ContractsPermission;
 
 class UsersController extends Controller
@@ -47,21 +48,28 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->input('txtName'));
+
         $request->validate(
             [
-                'name' => 'required|max:100|unique:roles'
-            ],
-            [
-                'name.required' => 'Please give a role name'
+                'name' => 'required|max:100',
+                'email' => 'required|max:100|email|unique:users',
+                'password' => 'required|min:6|confirmed'
             ]
         );
 
-        $role =  Role::create(['name' => $request->name]);
-        $permissions = $request->input('permissions');
+        // create user
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
 
-        if (!empty($permissions)) {
-            $role->syncPermissions($permissions);
+        if($request->roles){
+            $user->assignRole($request->roles);
         }
+
+        $request->session()->flash('success', 'User has been created');
 
         return back();
     }
@@ -85,40 +93,45 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findById($id);
-        $role = Role::all($id);
+        $user = User::find($id);
+        $roles = Role::all();
 
-        return view('backened.pages.users.edit', compact('users', 'role'));
+        return view('backened.pages.users.edit', compact('user', 'roles'));
     }
     /**
      * Update the specified resource in storage.
-     *
+     *  
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        // Create New User
+        $user = User::find($id);
+
         $request->validate(
             [
-                'name' => 'required|max:100|unique:roles,name,' . $id
-            ],
-            [
-                'name.required' => 'Please give a role name'
+                'name' => 'required|max:100',
+                'email' => 'required|max:100|email|unique:users,email,' . $id,
+                'password' => 'nullable|min:6|confirmed'
             ]
         );
-        $role =  Role::findById($id);
 
-        $role->name = $request->input('name');
-        $role->update();
-
-        $permissions = $request->input('permissions');
-
-        if (!empty($permissions)) {
-            $role->syncPermissions($permissions);
-        } else {
-            $role->syncPermissions([]);
+        // create user
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
         }
+        $user->save();
+
+        $user->roles()->detach();
+        if ($request->roles) {
+            $user->assignRole($request->roles);
+        }
+
+        $request->session()->flash('success', 'User has been edited');
 
         return back();
     }
@@ -129,15 +142,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($request, $id)
+
+    public function destroy($id)
     {
-        $user = User::findById($id);
+        $user = User::find($id);
         if (!is_null($user)) {
             $user->delete();
         }
-        
-        $request->session()->flash('success', 'User has been deleted');
-        //session->flash('success', 'User has been deleted');
+
+        //$request->session()->flash('success', 'User has been deleted');
         return back();
     }
 }

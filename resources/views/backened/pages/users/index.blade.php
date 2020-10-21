@@ -60,15 +60,24 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        {{-- @foreach ( $role->permissions as $perm )
+                                        @foreach ( $user->roles as $role )
                                         <span class="badge badge-info mr-1">
-                                            {{ $perm->name }}
+                                            {{ $role->name }}
                                         </span>
-                                        @endforeach --}}
+                                        @endforeach
                                     </td>
                                     <td>
                                         <a class="btn btn-info text-white" href={{ route('users.edit', $user->id) }}>Edit</a>
-                                        <a class="btn btn-danger text-white" href="{{ route('users.destroy', $user->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">Delete</a>
+
+                                        {{-- <a class="btn btn-danger text-white" href="{{ route('users.destroy', $user->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">Delete</a>
+                                        <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: none;">
+                                            @method('DELETE')
+                                            @csrf
+                                        </form> --}}
+                                        <a class="btn btn-danger text-white" href="{{ route('users.destroy', $user->id) }}"
+                                        onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
+                                            Delete
+                                        </a>
                                         <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: none;">
                                             @method('DELETE')
                                             @csrf

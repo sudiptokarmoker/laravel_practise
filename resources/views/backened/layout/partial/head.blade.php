@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('backened/assets/css/default-css.css') }}">
     <link rel="stylesheet" href="{{ asset('backened/assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('backened/assets/css/responsive.css') }}">
+    @yield('style')
     <!-- modernizr css -->
     @yield('head_style_datatable')
     <script src="{{ asset('backened/assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>

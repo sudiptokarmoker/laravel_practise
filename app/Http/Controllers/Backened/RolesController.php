@@ -32,9 +32,10 @@ class RolesController extends Controller
      */
     public function create()
     {
+        $roles = Role::all();
         $permissions = DB::table('permissions')->get();
         $permissionGroup = User::getPermissionsGroups();
-        return view('backened.pages.roles.create', compact('permissions', 'permissionGroup'));
+        return view('backened.pages.roles.create', compact('roles', 'permissions', 'permissionGroup'));
     }
 
     /**

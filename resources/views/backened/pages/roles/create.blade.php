@@ -31,30 +31,30 @@
                             <div class="form-group permission-checkbox-raw-wrapper">
                                 <label for="name">Permissons</label>
                                 <div class="form-check">
-                                    <input type="checkbox" name="" class="form-check-input" id="checkPermissionAll" value="" />
+                                    <input type="checkbox" name="" class="form-check-input" id="checkPermissionAll" value=""/>
                                     <label class="form-check-label" for="checkPermissionAll">All</label>
                                 </div>
                                 <hr>
                                 @php $i = 1; @endphp
                                 @foreach($permissionGroup as $group)
                                 <div class="row">
+                                    @php
+                                    $permissions = App\Models\User::getPermissionsByGroupName($group->name);
+                                    $j = 1;
+                                    @endphp
                                     <div class="col-4">
                                         <div class="form-check">
                                             <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" class="custom-control-input" id="checkPermissionGroup-{{ $i }}" value="{{ $group->name }}" onclick="checkPermissionByGroupName('role-{{ $i }}-management-checkbox', this)" />
+                                                <input type="checkbox" class="custom-control-input pr-group-{{ $i }}" id="checkPermissionGroup-{{ $i }}" value="{{ $group->name }}" onclick="checkPermissionByGroupName('role-{{ $i }}-management-checkbox', this)" />
                                                 <label class="custom-control-label" for="checkPermissionGroup-{{ $i }}">{{ $group->name }}</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-4 role-{{ $i }}-management-checkbox">
-                                        @php
-                                        $permissions = App\Models\User::getPermissionsByGroupName($group->name);
-                                        $j = 1;
-                                        @endphp
                                         @foreach($permissions as $permission)
                                         <div class="form-check">
                                             <div class="custom-control custom-checkbox mr-sm-2">
-                                                <input type="checkbox" class="custom-control-input" name="permissions[]" id="checkPermission-{{ $permission->id }}" value="{{ $permission->name }}" />
+                                                <input type="checkbox" class="custom-control-input checkbox-permission-checkbox-list permission-child-{{ $permission->id }}" name="permissions[]" id="checkPermission-{{ $permission->id }}" value="{{ $permission->name }}" onclick="permissionGroupCheckUncheck('permission-child-{{ $permission->id }}', 'pr-group-{{ $i }}', 'role-{{ $i }}-management-checkbox')" />
                                                 <label class="custom-control-label" for="checkPermission-{{ $permission->id }}">{{ $permission->name }}</label>
                                             </div>
                                         </div>

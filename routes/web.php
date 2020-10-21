@@ -47,13 +47,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('users', UsersController::class, ['name' => 'admin.users']);
     
     // Login route
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->mame('admin.login');
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
+    
     Route::post('/login/submit', [LoginController::class, 'login'])->name('admin.login.submit');
     // Logout route
     Route::post('/logout/submit', [LoginController::class, 'logout'])->name('admin.logout.submit');
     // forot password route
     Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
     Route::get('/password/reset/submit', [ForgotPasswordController::class, 'reset'])->name('admin.password.update');
+    
 });
 
 Route::get('/test', [TestController::class, 'index']);

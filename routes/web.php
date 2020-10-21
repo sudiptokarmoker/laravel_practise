@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
     //Route::resource('roles', RolesController::class);
     Route::resource('roles', RolesController::class, ['name' => 'admin.roles']);
     Route::resource('users', UsersController::class, ['name' => 'admin.users']);
+    
     // Login route
     Route::get('/login', [LoginController::class, 'showLoginForm'])->mame('admin.login');
     Route::post('/login/submit', [LoginController::class, 'login'])->name('admin.login.submit');

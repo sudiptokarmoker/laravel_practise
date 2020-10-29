@@ -21,4 +21,8 @@ class LoginController extends Controller
     public function showLoginForm(Request $request){
         return view('backened.auth.login');
     }
+
+    public function login(){
+        return 1;
+    }
 }

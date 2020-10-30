@@ -1,13 +1,13 @@
-@extends('backened.layout.master')
+@extends('backend.layouts.master')
 
 @section('title', 'Roles Pages')
 
 @section('admin-content')
 <!-- header area start -->
-@include('backened.pages.roles.partial.header')
+@include('backend.pages.roles.partial.header')
 <!-- header area end -->
 <!-- page title area start -->
-@include('backened.pages.roles.partial.page_title')
+@include('backend.pages.roles.partial.page_title')
 <!-- page title area end -->
 <div class="main-content-inner">
     <div class="row">

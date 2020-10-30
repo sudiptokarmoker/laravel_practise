@@ -1,4 +1,4 @@
-@extends('backened.layout.master')
+@extends('backend.layouts.master')
 
 @section('admin-content')
 <!-- header area start -->
@@ -89,7 +89,7 @@
                                     <div class="nofity-list">
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="{{ asset('backened/assets/images/author/author-img1.jpg') }}" alt="image">
+                                                <img src="{{ asset('backend/assets/images/author/author-img1.jpg') }}" alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -99,7 +99,7 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="{{ asset('backened/assets/images/author/author-img2.jpg') }}" alt="image">
+                                                <img src="{{ asset('backend/assets/images/author/author-img2.jpg') }}" alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -109,7 +109,7 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="{{ asset('backened/assets/images/author/author-img3.jpg') }}" alt="image">
+                                                <img src="{{ asset('backend/assets/images/author/author-img3.jpg') }}" alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -119,7 +119,7 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="{{ asset('backened/assets/images/author/author-img4.jpg') }}" alt="image">
+                                                <img src="{{ asset('backend/assets/images/author/author-img4.jpg') }}" alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -129,7 +129,7 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="{{ asset('backened/assets/images/author/author-img2.jpg') }}" alt="image">
+                                                <img src="{{ asset('backend/assets/images/author/author-img2.jpg') }}" alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -139,7 +139,7 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="{{ asset('backened/assets/images/author/author-img1.jpg') }}" alt="image">
+                                                <img src="{{ asset('backend/assets/images/author/author-img1.jpg') }}" alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -149,7 +149,7 @@
                                         </a>
                                         <a href="#" class="notify-item">
                                             <div class="notify-thumb">
-                                                <img src="{{ asset('backened/assets/images/author/author-img3.jpg') }}" alt="image">
+                                                <img src="{{ asset('backend/assets/images/author/author-img3.jpg') }}" alt="image">
                                             </div>
                                             <div class="notify-text">
                                                 <p>Aglae Mayer</p>
@@ -182,7 +182,7 @@
                     </div>
                     <div class="col-sm-6 clearfix">
                         <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="{{ asset('backened/assets/images/author/avatar.png') }}" alt="avatar">
+                            <img class="avatar user-thumb" src="{{ asset('backend/assets/images/author/avatar.png') }}" alt="avatar">
                             <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Message</a>
@@ -300,12 +300,12 @@
                                                 <td class="stats-chart">Stats</td>
                                             </tr>
                                             <tr>
-                                                <td class="mv-icon"><img src="{{ asset('backened/assets/images/icon/market-value/icon1.png') }}" alt="icon">
+                                                <td class="mv-icon"><img src="{{ asset('backend/assets/images/icon/market-value/icon1.png') }}" alt="icon">
                                                 </td>
                                                 <td class="coin-name">Dashcoin</td>
-                                                <td class="buy">30% <img src="{{ asset('backened/assets/images/icon/market-value/triangle-down.png') }}" alt="icon"></td>
-                                                <td class="sell">20% <img src="{{ asset('backened/assets/images/icon/market-value/triangle-up.png') }}" alt="icon"></td>
-                                                <td class="trends"><img src="{{ asset('backened/assets/images/icon/market-value/trends-up-icon.png') }}" alt="icon"></td>
+                                                <td class="buy">30% <img src="{{ asset('backend/assets/images/icon/market-value/triangle-down.png') }}" alt="icon"></td>
+                                                <td class="sell">20% <img src="{{ asset('backend/assets/images/icon/market-value/triangle-up.png') }}" alt="icon"></td>
+                                                <td class="trends"><img src="{{ asset('backend/assets/images/icon/market-value/trends-up-icon.png') }}" alt="icon"></td>
                                                 <td class="attachments">$ 56746,857</td>
                                                 <td class="stats-chart">
                                                     <canvas id="mvaluechart"></canvas>
@@ -313,12 +313,12 @@
                                             </tr>
                                             <tr>
                                                 <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="{{ asset('backened/assets/images/icon/market-value/icon2.png') }}" alt="icon"></div>
+                                                    <div class="mv-icon"><img src="{{ asset('backend/assets/images/icon/market-value/icon2.png') }}" alt="icon"></div>
                                                 </td>
                                                 <td class="coin-name">LiteCoin</td>
-                                                <td class="buy">30% <img src="{{ asset('backened/assets/images/icon/market-value/triangle-down.png') }}" alt="icon"></td>
-                                                <td class="sell">20% <img src="{{ asset('backened/assets/images/icon/market-value/triangle-up.png') }}" alt="icon"></td>
-                                                <td class="trends"><img src="{{ asset('backened/assets/images/icon/market-value/trends-down-icon.png') }}" alt="icon"></td>
+                                                <td class="buy">30% <img src="{{ asset('backend/assets/images/icon/market-value/triangle-down.png') }}" alt="icon"></td>
+                                                <td class="sell">20% <img src="{{ asset('backend/assets/images/icon/market-value/triangle-up.png') }}" alt="icon"></td>
+                                                <td class="trends"><img src="{{ asset('backend/assets/images/icon/market-value/trends-down-icon.png') }}" alt="icon"></td>
                                                 <td class="attachments">$ 56746,857</td>
                                                 <td class="stats-chart">
                                                     <canvas id="mvaluechart2"></canvas>
@@ -326,12 +326,12 @@
                                             </tr>
                                             <tr>
                                                 <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="{{ asset('backened/assets/images/icon/market-value/icon3.png') }}" alt="icon"></div>
+                                                    <div class="mv-icon"><img src="{{ asset('backend/assets/images/icon/market-value/icon3.png') }}" alt="icon"></div>
                                                 </td>
                                                 <td class="coin-name">Euthorium</td>
-                                                <td class="buy">30% <img src="{{ asset('backened/assets/images/icon/market-value/triangle-down.png') }}" alt="icon"></td>
-                                                <td class="sell">20% <img src="{{ asset('backened/assets/images/icon/market-value/triangle-up.png') }}" alt="icon"></td>
-                                                <td class="trends"><img src="{{ asset('backened/assets/images/icon/market-value/trends-up-icon.png') }}" alt="icon"></td>
+                                                <td class="buy">30% <img src="{{ asset('backend/assets/images/icon/market-value/triangle-down.png') }}" alt="icon"></td>
+                                                <td class="sell">20% <img src="{{ asset('backend/assets/images/icon/market-value/triangle-up.png') }}" alt="icon"></td>
+                                                <td class="trends"><img src="{{ asset('backend/assets/images/icon/market-value/trends-up-icon.png') }}" alt="icon"></td>
                                                 <td class="attachments">$ 56746,857</td>
                                                 <td class="stats-chart">
                                                     <canvas id="mvaluechart3"></canvas>
@@ -339,12 +339,12 @@
                                             </tr>
                                             <tr>
                                                 <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="{{ asset('backened/assets/images/icon/market-value/icon4.png') }}" alt="icon"></div>
+                                                    <div class="mv-icon"><img src="{{ asset('backend/assets/images/icon/market-value/icon4.png') }}" alt="icon"></div>
                                                 </td>
                                                 <td class="coin-name">Bitcoindash</td>
-                                                <td class="buy">30% <img src="{{ asset('backened/assets/images/icon/market-value/triangle-down.png') }}" alt="icon"></td>
-                                                <td class="sell">20% <img src="{{ asset('backened/assets/images/icon/market-value/triangle-up.png') }}" alt="icon"></td>
-                                                <td class="trends"><img src="{{ asset('backened/assets/images/icon/market-value/trends-up-icon.png') }}" alt="icon"></td>
+                                                <td class="buy">30% <img src="{{ asset('backend/assets/images/icon/market-value/triangle-down.png') }}" alt="icon"></td>
+                                                <td class="sell">20% <img src="{{ asset('backend/assets/images/icon/market-value/triangle-up.png') }}" alt="icon"></td>
+                                                <td class="trends"><img src="{{ asset('backend/assets/images/icon/market-value/trends-up-icon.png') }}" alt="icon"></td>
                                                 <td class="attachments">$ 56746,857</td>
                                                 <td class="stats-chart">
                                                     <canvas id="mvaluechart4"></canvas>
@@ -495,7 +495,7 @@
                                 <div class="letest-news mt-5">
                                     <div class="single-post mb-xs-40 mb-sm-40">
                                         <div class="lts-thumb">
-                                            <img src="{{ asset('backened/assets/images/blog/post-thumb1.jpg') }}" alt="post thumb">
+                                            <img src="{{ asset('backend/assets/images/blog/post-thumb1.jpg') }}" alt="post thumb">
                                         </div>
                                         <div class="lts-content">
                                             <span>Admin Post</span>
@@ -505,7 +505,7 @@
                                     </div>
                                     <div class="single-post">
                                         <div class="lts-thumb">
-                                            <img src="{{ asset('backened/assets/images/blog/post-thumb2.jpg') }}" alt="post thumb">
+                                            <img src="{{ asset('backend/assets/images/blog/post-thumb2.jpg') }}" alt="post thumb">
                                         </div>
                                         <div class="lts-content">
                                             <span>Admin Post</span>

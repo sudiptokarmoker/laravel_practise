@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
     //Route::resource('roles', RolesController::class);
     Route::resource('roles', RolesController::class, ['name' => 'admin.roles']);
     Route::resource('users', UsersController::class, ['name' => 'admin.users']);
+    Route::resource('admins', 'Backend\AdminsController', ['names' => 'admin.admins']);
     
     // Login route
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin.login');

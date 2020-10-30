@@ -1,4 +1,4 @@
-@extends('backened.auth.auth_master')
+@extends('backend.auth.auth_master')
 
 @section('auth-content')
 <!-- login area start -->
@@ -12,7 +12,7 @@
                         <p>Hello there, Sign in and start managing your Admin Template</p>
                     </div>
                     <div class="login-form-body">
-                        @include('backened.layout.partial.message')
+                        @include('backend.layouts.partials.messages')
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="text" id="exampleInputEmail1" name="email">

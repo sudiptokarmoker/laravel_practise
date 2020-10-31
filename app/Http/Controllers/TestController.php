@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
+
+    public function test(Request $request){
+        dd("Found this method");
+    }
     public function index(Request $request)
     {
         $permission_data = [

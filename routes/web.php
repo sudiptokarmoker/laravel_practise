@@ -8,6 +8,8 @@ use App\Http\Controllers\TestController;
 
 use App\Http\Controllers\Backened\RolesController;
 use App\Http\Controllers\Backened\UsersController;
+
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +26,7 @@ Route::get('/', function () {
 });
 */
 
-//Auth::routes();
+Auth::routes();
 
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -39,7 +41,10 @@ Route::view('/dashboard/create', [IndexController::class, 'create'])->name('dash
 */
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', [Dashboard::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [Dashboard::class, 'index'])->name('admin.dashboard');
+
+    //Route::get('/dashboard', [TestController::class, 'test']);
+
     //Route::get('roles', [RolesController::class, 'index']);
     //Route::get('/roles', [RolesController::class, 'index']);
     //Route::resource('roles', RolesController::class);

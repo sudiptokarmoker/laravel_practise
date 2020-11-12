@@ -8,7 +8,7 @@ use App\Http\Controllers\TestController;
 
 use App\Http\Controllers\Backened\RolesController;
 use App\Http\Controllers\Backened\UsersController;
-
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -51,17 +51,21 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('roles', RolesController::class, ['name' => 'admin.roles']);
     Route::resource('users', UsersController::class, ['name' => 'admin.users']);
     Route::resource('admins', 'Backend\AdminsController', ['names' => 'admin.admins']);
-    
+
     // Login route
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
-    
+
     Route::post('/login/submit', [LoginController::class, 'login'])->name('admin.login.submit');
     // Logout route
     Route::post('/logout/submit', [LoginController::class, 'logout'])->name('admin.logout.submit');
-    // forot password route
+    // forget password route
     Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('admin.password.request');
     Route::get('/password/reset/submit', [ForgotPasswordController::class, 'reset'])->name('admin.password.update');
-    
 });
 
 Route::get('/test', [TestController::class, 'index']);
+
+
+Route::get('/add-post', [PostsController::class, 'addPost'])->name('add.post');
+
+Route::get('/add-comment/{id}', [PostsController::class, 'addComments'])->name('add.post.comments');

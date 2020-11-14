@@ -13,7 +13,7 @@ class CreatePostModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_models', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('body');
@@ -28,6 +28,6 @@ class CreatePostModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_models');
+        Schema::dropIfExists('posts');
     }
 }

@@ -9,7 +9,13 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Backened\RolesController;
 use App\Http\Controllers\Backened\UsersController;
 use App\Http\Controllers\PostsController;
+use App\Models\Address;
+use App\Models\User;
+
+
 use Illuminate\Support\Facades\Auth;
+
+use Faker\Factory;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,3 +75,30 @@ Route::get('/test', [TestController::class, 'index']);
 Route::get('/add-post', [PostsController::class, 'addPost'])->name('add.post');
 
 Route::get('/add-comment/{id}', [PostsController::class, 'addComments'])->name('add.post.comments');
+
+
+Route::get('/user', function(){
+    /*
+    Address::create([
+        'user_id' => 1,
+        'country' => 'Bangladesh'
+    ]);
+    Address::create([
+        'user_id' => 2,
+        'country' => 'Sweden'
+    ]);
+    */
+    $user_list = User::all();
+
+    // foreach($user_list as $row){
+    //     if(isset($row->address['country'])){
+    //         echo '<br><br>';
+    //     echo $row->name;
+    //     echo "country : ".$row->address['country'];
+    //     echo "</br>";
+    //     }
+        
+    // }
+
+    return view('user.user_lists', compact('user_list'));
+});

@@ -13,4 +13,8 @@ class Address extends Model
         'user_id',
         'country'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

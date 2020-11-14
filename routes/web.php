@@ -88,7 +88,11 @@ Route::get('/user', function(){
         'country' => 'Sweden'
     ]);
     */
-    $user_list = User::all();
+    // $user_list = User::all();
+
+
+    $address_list = Address::all();
+
 
     // foreach($user_list as $row){
     //     if(isset($row->address['country'])){
@@ -100,5 +104,5 @@ Route::get('/user', function(){
         
     // }
 
-    return view('user.user_lists', compact('user_list'));
+    return view('user.user_lists', compact('address_list'));
 });

@@ -1,12 +1,13 @@
-@foreach ($user_list as $row)
-<p>{{ $row->email }}</p>
+@foreach ($address_list as $row)
+<p>{{ $row->id }}</p>
 
-<p>Address @if(isset($row->address->country))
+{{-- <p>Address @if(isset($row->address->country))
     {{ $row->address->country }}
+    @endif</p> --}}
+
+
+<p>Address @if(isset($row->user->email))
+    {{ $row->user->email }}
     @endif</p>
-    
-{{-- @foreach ($row->address as $row_address) 
-    <p> Address : {{ $row_address->id }}</p>
-@endforeach --}}
 
 @endforeach

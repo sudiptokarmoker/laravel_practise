@@ -10,6 +10,7 @@ use App\Http\Controllers\Backened\RolesController;
 use App\Http\Controllers\Backened\UsersController;
 use App\Http\Controllers\PostsController;
 use App\Models\Address;
+use App\Models\Posts;
 use App\Models\User;
 
 
@@ -77,7 +78,7 @@ Route::get('/add-post', [PostsController::class, 'addPost'])->name('add.post');
 Route::get('/add-comment/{id}', [PostsController::class, 'addComments'])->name('add.post.comments');
 
 
-Route::get('/user', function(){
+Route::get('/user', function () {
     /*
     Address::create([
         'user_id' => 1,
@@ -88,12 +89,26 @@ Route::get('/user', function(){
         'country' => 'Sweden'
     ]);
     */
-    // $user_list = User::all();
 
+    //dd(User::all()->count());
+    //$users_list = User::with('posts')->get();
 
-    $address_list = Address::all();
+    //$users_list = User::has('posts', '>=', 2)->with('posts')->get();
 
+    // $users_list = User::whereHas('posts', function($query){
+    //     $query->where('title', 'like', '%post%');
+    // })->with('posts')->get();
+    
+    // user who dont have any post
+    $users_list = User::doesntHave('posts')->with('posts')->get();
 
+    
+    // dd($users_list);
+    // $users_list = User::get();
+    // Address::create([
+    //     'user_id' => 1,
+    //     'country' => 'Greech'
+    // ]);
     // foreach($user_list as $row){
     //     if(isset($row->address['country'])){
     //         echo '<br><br>';
@@ -101,8 +116,34 @@ Route::get('/user', function(){
     //     echo "country : ".$row->address['country'];
     //     echo "</br>";
     //     }
-        
     // }
+    // $address_list = Address::all();
+    // $users_list = User::with('address')->get();
+    // $users_list = User::with('addresses')->get();
+    // $users_list[0]->addresses()->create([
+    //     'country' => 'Canada'
+    // ]);
 
-    return view('user.user_lists', compact('address_list'));
+    // $users_list[0]->posts()->create([
+    //     'title' => 'This is title of 5 u 0'
+    // ]);
+
+    // $users_list[2]->posts()->create([
+    //     'title' => 'This is title of 7 u 2'
+    // ]);
+
+    return view('user.user_lists', compact('users_list'));
+});
+
+Route::get('/posts', function () {
+    // \App\Models\Posts::create([
+    //     'user_id' => 1,
+    //     'title' => 'this is post title 1'
+    // ]);
+    Posts::create([
+        'user_id' => 1,
+        'title' => 'this is post title 4'
+    ]);
+    $posts = Posts::get();
+    return view('user.posts.index', compact('posts'));
 });

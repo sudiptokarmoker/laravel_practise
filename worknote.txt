@@ -24,3 +24,6 @@ from 22:00 Minitue
 - create role and permission
 
 ===================================
+
+- one to one relationship
+- one to many relationship

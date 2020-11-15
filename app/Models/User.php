@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\DB;
+use App\Models\Posts;
 
 use App\Models\Address;
 
@@ -90,9 +91,16 @@ class User extends Authenticatable
     }
 
     public function address(){
-        //dd("End");
         // return $this->hasOne('App\Models\Address', 'user_id');
         // return $this->hasOne('App\Models\Address');
         return $this->hasOne(Address::class);
+    }
+
+    public function addresses(){
+        return $this->hasMany(Address::class);
+    }
+
+    public function posts(){
+        return $this->hasMany(Posts::class);
     }
 }

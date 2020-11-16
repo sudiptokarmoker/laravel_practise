@@ -100,11 +100,11 @@ Route::get('/user', function () {
     // })->with('posts')->get();
     
     // user who dont have any post
-    $users_list = User::doesntHave('posts')->with('posts')->get();
+    //$users_list = User::doesntHave('posts')->with('posts')->get();
 
     
     // dd($users_list);
-    // $users_list = User::get();
+    $users_list = User::get();
     // Address::create([
     //     'user_id' => 1,
     //     'country' => 'Greech'

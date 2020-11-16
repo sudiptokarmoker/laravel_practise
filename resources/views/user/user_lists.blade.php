@@ -14,12 +14,18 @@
     @endif
 @endforeach --}}
 
-
 @foreach ($users_list as $row)
+<p>{{ $row->id }}</p>
+    @if(isset($row->address))
+        {{ $row->address->country }}
+    @endif
+@endforeach
+
+{{-- @foreach ($users_list as $row)
 <p>{{ $row->id }}</p>
 
         @foreach ($row->posts as $post)
             <p>Title : {{ $post->title }}</p>
         @endforeach
 
-@endforeach
+@endforeach --}}
